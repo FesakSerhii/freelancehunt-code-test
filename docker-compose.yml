@@ -1,0 +1,53 @@
+version: "2.0"
+services:
+  #PHP Service
+  backend:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    image: php
+    container_name: backend
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: backend
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html/
+    volumes:
+      - ./php:/var/www/html/
+      - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - app-network
+
+  frontend:
+    stdin_open: true
+    container_name: frontend
+    build:
+      context: ./vue
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./vue:/var/www/html/
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    depends_on:
+      - backend
+      - frontend
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge

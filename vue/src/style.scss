@@ -1,0 +1,79 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 16px;
+  color: #111111;
+  background-color: #fefefe;
+  display: flex;
+  align-items: flex-start;
+}
+main {
+  padding-top: 117px;
+  @media (max-width: 767px) {
+    padding-top: 80px;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  width: 1230px;
+  max-width: 90vw;
+}
+
+a {
+  color: #2F80ED;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: transparent;
+}
+a {
+  color: #2F80ED;
+}
+
+
+h1, .h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 50px;
+}
+
+h2, .h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 50px;
+}
+
+h3, .h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 41px;
+}
+
+h4, .h4 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 32px;
+}
+
+h5, .h5 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+}
+
+
+h6, .h6 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+}
