@@ -12,7 +12,6 @@ export class API {
         if (filledKeys.length > 0) {
             url += (url.includes("?") ? "&" : "?") + filledKeys.map(k => `${k}=${encodeURIComponent(data[k])}`).join("&");
         }
-        console.log(globalContext);
         if (!import.meta.env.SSR && globalContext[url]) {
             const data: any = globalContext[url];
             delete globalContext[url];
