@@ -22,7 +22,7 @@
 <script lang="ts">
 import {useStore} from "../stores/userStore";
 import {defineComponent} from "vue";
-import {Projects} from "../../models/projects";
+import type {Data, Projects} from "../../models/projects";
 import ResumeList from "../components/projects-assistants/resume-list.vue"
 
 export default defineComponent({
@@ -38,8 +38,8 @@ export default defineComponent({
     }
   },
   async mounted() {
-    await this.$api.get("projects").then((resp: { data?: Projects }) => {
-      this.list = resp?.data
+    await this.$api.get("projects").then((resp: any) => {
+      this.list = resp.data
     });
 
   }

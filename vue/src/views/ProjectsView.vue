@@ -1,8 +1,9 @@
 <script lang="ts">
 import {defineComponent} from "vue"
-import {Projects} from "../../models/projects";
+
 import {useStore} from "@/stores/userStore";
 import moment from "moment";
+import type {Project} from "../../models/projects";
 
 export default defineComponent({
   name: "ProjectsView",
@@ -17,17 +18,17 @@ export default defineComponent({
   },
   data() {
     return {
-      project: null,
+      project: <Project>{},
     }
   },
   async mounted() {
     const params = this.$route.params;
-    await this.$api.get(`projects/${params.id}`).then((resp: { data?: Projects }) => {
+    await this.$api.get(`projects/${params.id}`).then((resp: any) => {
       this.project = resp?.data
     });
   },
   methods: {
-    dateTime(value) {
+    dateTime(value: Date | string) {
       return moment(value).format('DD.MM.YYYY HH:ss');
     },
   },
@@ -45,15 +46,15 @@ export default defineComponent({
             </svg>
             Всі проєкти
           </router-link>
-          <date>{{ dateTime(project?.attributes?.expired_at) }}</date>
+          <date>{{ dateTime(project?.attributes?.expired_at || '') }}</date>
         </div>
 
         <div class="top">
           <h1 class="title">{{project?.attributes?.name || ''}}</h1>
-          <div class="price" v-if="project?.attributes.budget">{{project.attributes?.budget.amount}} {{project.attributes.budget.currency}}</div>
+          <div class="price" v-if="project?.attributes?.budget">{{project.attributes?.budget.amount}} {{project.attributes.budget.currency}}</div>
         </div>
 
-        <a :href="project?.links?.self?.web" target="_blank" class="primary-button">
+        <a :href="project?.links?.self?.web || ''" target="_blank" class="primary-button">
           Виконати проєкт
         </a>
 

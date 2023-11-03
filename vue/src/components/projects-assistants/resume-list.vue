@@ -1,16 +1,17 @@
 <script lang="ts">
 import {defineComponent} from "vue"
+import type {Projects} from "../../../models/projects";
 
 export default defineComponent({
   name: "resume-list",
-  props: {list: Array},
+  props: {list: null},
 })
 </script>
 
 <template>
-  <div class="projects-item" v-for="(res, index) in list" :key="index">
+  <div v-if="list && list.length" class="projects-item" v-for="(res, index) in list" :key="index">
     <div class="projects-item-content">
-      <router-link :to="`/projects/${res.id}`">
+      <router-link :to="`/projects/${res?.id}`">
         <h2>{{ res.attributes.name }}</h2>
       </router-link>
       <div class="projects-item-content-info">
