@@ -4,7 +4,7 @@
 
 Далі перейдіть у своєму терміналі до каталогу, який ви клонували, і розгорніть контейнери для веб-сервера, запустивши `docker-compose up -d` .
 
-Щоб переглянути стай перейдыть за посиланням [localhost](http://localhost)
+Щоб переглянути сайт перейдіть за посиланням [localhost](http://localhost)
 
 <img width="1918" alt="Снимок экрана 2023-11-03 в 17 31 32" src="https://github.com/FesakSerhii/freelancehunt-code-test/assets/30522353/b558cbc4-8294-4e3f-9e41-017ea33fd9c7">
 
